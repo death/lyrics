@@ -50,8 +50,8 @@ format, if found."
                               (error "No lyrics for this song")
                             (lyrics-view response-buffer (point) artist title))
                         (url-mark-buffer-as-dead response-buffer))))
-               ( t (url-mark-buffer-as-dead (current-buffer))
-                   (error "Couldn't fetch lyrics, server returned code %d" code)))))))
+               (t (url-mark-buffer-as-dead (current-buffer))
+                  (error "Couldn't fetch lyrics, server returned code %d" code)))))))
 
 (defun lyrics-buffer-name (artist title)
   "Return lyrics buffer name for song."
