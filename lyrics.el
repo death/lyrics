@@ -44,8 +44,12 @@ format, if found."
              (case code
                (200 (let ((response-buffer (current-buffer)))
                       (re-search-forward "^$")
-                      (lyrics-view response-buffer (1+ (point)) artist title)
-                      (url-mark-buffer-as-dead response-buffer)))
+                      (forward-char)
+                      (unwind-protect
+                          (if (looking-at "^Not found$")
+                              (error "No lyrics for this song")
+                            (lyrics-view response-buffer (point) artist title))
+                        (url-mark-buffer-as-dead response-buffer))))
                ( t (url-mark-buffer-as-dead (current-buffer))
                    (error "Couldn't fetch lyrics, server returned code %d" code)))))))
 
