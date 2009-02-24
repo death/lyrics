@@ -27,7 +27,7 @@ format, if found."
 
 (defun lyrics-encode-argument (string)
   "Return lyricwiki-friendly argument string."
-  (replace-regexp-in-string " " "_" string))
+  (url-hexify-string (replace-regexp-in-string " " "_" string)))
 
 (defun lyrics-fetch (artist title)
   "Fetch lyrics for song."
