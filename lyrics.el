@@ -67,11 +67,17 @@ format, if found."
     (setq buffer-read-only t)
     (view-buffer-other-window (current-buffer) nil 'kill-buffer)))
 
-(defun lyrics ()
-  "Try to fetch and view lyrics for currently-playing song."
-  (interactive)
+(defun lyrics (&optional prompt)
+  "Try to fetch and view lyrics for currently-playing song,
+except when a prefix argument is supplied, in which case the song
+is prompted for."
+  (interactive "P")
   (condition-case err
-      (apply #'lyrics-fetch (lyrics-current-song))
+      (apply #'lyrics-fetch
+             (if prompt
+                 (list (read-string "Artist: ")
+                       (read-string "Title: "))
+               (lyrics-current-song)))
     (error (message "Lyrics error: %s" (error-message-string err)))))
 
 (provide 'lyrics)
