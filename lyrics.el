@@ -1,6 +1,13 @@
-;;;; +----------------------------------------------------------------+
-;;;; | lyrics.el - Get lyrics for currently-playing song  DEATH, 2009 |
-;;;; +----------------------------------------------------------------+
+;;; lyrics.el --- Get lyrics for currently-playing song
+
+;; Author: DEATH
+;; Created: 2009
+
+;;; Commentary:
+
+;; Get lyrics for currently-playing song.
+
+;;; Code:
 
 (require 'url)
 (require 'url-http)
